@@ -8,10 +8,12 @@ window.onload = function(){
     var countryName = document.querySelector("#country-name");
     var countryCapital = document.querySelector("#capital");
     var countryPop = document.querySelector("#population");
+    var mapTitle = document.querySelector("#map-title");
 
     countryName.innerText = ("You have selected : " + storedCountry.name);
     countryCapital.innerText = ("Did you know that the capital city of " + storedCountry.name + " is : " + storedCountry.capital);
     countryPop.innerText = ("It will astound you to find out that " + storedCountry.name + " has a population of : " + storedCountry.population.toLocaleString());
+    mapTitle.innerText = ("Gaze upon the majesty of " + storedCountry.name);
 
     var newLat = storedCountry.latlng[0];
     var newLng = storedCountry.latlng[1];
@@ -34,7 +36,7 @@ window.onload = function(){
     }
 
     var map = new Map(centre, zoom);
-
+    map.bindClick();
   }
 
 
