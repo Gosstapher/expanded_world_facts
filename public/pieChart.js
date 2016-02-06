@@ -1,5 +1,5 @@
-var PieChart = function(){
-  var container = document.getElementById("pieChart");
+var PieChart = function(worldPop, country){
+  var container = document.getElementById("pie-chart");
   var pieChart = new Highcharts.Chart({
       chart: {
         type: 'pie',
@@ -11,26 +11,21 @@ var PieChart = function(){
                   layout: 'vertical'
               },
       title: {
-        text: "Pokemon types I've caught"
+        text: "population"
       },
       series: [{
         showInLegend: true,
-        name: "Type",
+        name: "Population",
         data: [
           {
-            name: "Fire",
-            y: 74,
+            name: "World Population",
+            y: worldPop,
             color: "#ffac33"
           },
           {
-            name: "Water",
-            y: 25,
-            color: "#73b7ff"
-          },
-          {
-            name: "Grass",
-            y: 1,
-            color: "#00ba2f",
+            name: country.name,
+            y: country.population,
+            color: "#73b7ff",
             sliced: true
           }
         ]

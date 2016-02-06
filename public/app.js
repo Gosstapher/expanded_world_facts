@@ -1,7 +1,9 @@
 window.onload = function(){
   console.log('App started');
   var url = "https://restcountries.eu/rest/v1";
+  var urlRegions = "https://restcountries.eu/rest/v1/region/";
   var request = new XMLHttpRequest();
+  var requestRegion = new XMLHttpRequest();
 
   var displayInfo = function(){
     var storedCountry = JSON.parse(localStorage.getItem('setCountry'));
@@ -37,8 +39,32 @@ window.onload = function(){
 
     var map = new Map(centre, zoom);
     map.bindClick();
-  }
 
+    var regionPop = function(country){
+      var region = country.region;
+      var pop = 0;
+      requestRegion.open("GET", (urlRegions+region));
+      requestRegion.send(null);
+      requestRegion.onload = function(){
+        if(requestRegion.status === 200){
+          var regionList = JSON.parse(requestRegion.responseText);  
+          for (var i = 0; i < regionList.length; i++) {
+            pop += (regionList[i].population);
+          };
+            // console.log(pop);
+            return pop;
+        }
+        // console.log(pop);
+      }
+    }
+
+
+    console.log(regionPop(storedCountry));
+    // var testPop = regionPop(storedCountry);
+    // console.log(testPop);
+    // new PieChart((7400000000 - storedCountry.population), storedCountry);
+  }
+// ------------------- end of displayInfo function ---------------------------------
 
 
 
@@ -49,9 +75,8 @@ window.onload = function(){
 
   request.onload = function(){
     if(request.status === 200){
-      console.log("got the data");
+      // console.log("got the data");
       var countryList = JSON.parse(request.responseText);
-
 
       for (var i = 0; i < countryList.length; i++) {
         var sel = document.getElementById('select');
@@ -75,8 +100,7 @@ window.onload = function(){
       }
 
       displayInfo();
-      // new PieChart();
-
+      
 
 
       //---------- this is the end of the if ---------------------
