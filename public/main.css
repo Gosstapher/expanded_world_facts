@@ -1,0 +1,41 @@
+body {
+  background-color: gainsboro;
+}
+
+.select-box {
+  display: block;
+  background: linear-gradient(to right, #2ca020 0%,#5ea0d6 50%,#260cd1 100%);
+  margin: auto;
+  width: 50%;
+  border: 1px solid black;
+  border-radius: 25px;
+  box-sizing; border-box;
+  box-shadow: 0px 15px 5px -9px rgba(77,75,77,1);
+}
+
+.select-text {
+  margin-left: 5px;
+  display: inline-block;
+}
+
+.title {
+  border-bottom: 3px solid black;
+  text-align: center;
+  text-shadow: 0px 4px 3px rgba(150, 150, 150, 1);
+}
+
+.claim {
+  text-align: center;
+}
+
+#info {
+  text-align: center;
+}
+
+#map {
+  margin: auto;
+  height: 400px;
+  width: 500px;
+  /*background-color: slategrey;*/
+}
+
