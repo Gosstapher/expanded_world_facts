@@ -3,6 +3,28 @@ window.onload = function(){
   var url = "https://restcountries.eu/rest/v1";
   var request = new XMLHttpRequest();
 
+  var displayInfo = function(){
+    var storedCountry = JSON.parse(localStorage.getItem('setCountry'));
+    var countryName = document.querySelector("#country-name");
+    var countryCapital = document.querySelector("#capital");
+    var countryPop = document.querySelector("#population");
+
+    countryName.innerText = ("You have selected : " + storedCountry.name);
+    countryCapital.innerText = ("Did you know that the capital city of " + storedCountry.name + " is : " + storedCountry.capital);
+    countryPop.innerText = ("It will astound you to find out that " + storedCountry.name + " has a population of : " + storedCountry.population.toLocaleString());
+
+    var newLat = storedCountry.latlng[0];
+    var newLng = storedCountry.latlng[1];
+    var zoom = 5;
+    var centre = {lat: newLat, lng: newLng};
+    var map = new Map(centre, zoom);
+
+  }
+
+
+
+
+
 
 
   request.open("GET", url);
@@ -20,48 +42,28 @@ window.onload = function(){
         opt.value = countryList[i].name;
         sel.appendChild(opt);
       };
-// ---------------- get country info from drop down--------------
-      // var name = document.getElementById('select').value
-      // var result = _.find(countryList, function(o) { return o.name == name; });
-      // console.log(result.capital);
+
 
       select.oninput = function() {
-        var name = document.getElementById('select').value
+        var name = this.value
         var result = _.find(countryList, function(o) { return o.name == name; });
         localStorage.setItem('setCountry', JSON.stringify(result));
-        var storedCountry = JSON.parse(localStorage.getItem('setCountry'));
+        
+        displayInfo();
 
-        var countryName = document.querySelector("#country-name");
-        var countryCapital = document.querySelector("#capital");
-        var countryPop = document.querySelector("#population");
-        countryName.innerText = ("You have selected : " + storedCountry.name);
-        countryCapital.innerText = ("Did you know that the capital city of " +  storedCountry.name + " is : " + storedCountry.capital);
-        countryPop.innerText = ("It will astound you to find out that " + storedCountry.name + " has a population of : " + (storedCountry.population.toLocaleString()));
-
-        var zoom = 13;
-        var centre = {lat: 55.924734, lng: -3.184194};
-        var map = new Map(centre, zoom);
+        
 
 
       }
-      var storedCountry = JSON.parse(localStorage.getItem('setCountry'));
-      var countryName = document.querySelector("#country-name");
-      var countryCapital = document.querySelector("#capital");
-      var countryPop = document.querySelector("#population");
-      countryName.innerText = ("You have selected : " + storedCountry.name);
-      countryCapital.innerText = ("Did you know that the capital city of " + storedCountry.name + " is : " + storedCountry.capital);
-      countryPop.innerText = ("It will astound you to find out that " + storedCountry.name + " has a population of : " + storedCountry.population.toLocaleString());
 
-
+      displayInfo();
 
 
 
       //---------- this is the end of the if ---------------------
     }
 
-    var zoom = 13;
-    var centre = {lat: 55.924734, lng: -3.184194};
-    var map = new Map(centre, zoom);
+    
 
 
 
