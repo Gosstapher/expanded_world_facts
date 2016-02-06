@@ -15,8 +15,24 @@ window.onload = function(){
 
     var newLat = storedCountry.latlng[0];
     var newLng = storedCountry.latlng[1];
-    var zoom = 5;
+    var zoom = 0;
     var centre = {lat: newLat, lng: newLng};
+    if(storedCountry.area >= 17000000){
+      zoom = 2;
+    }else if(storedCountry.area >= 9000000 && storedCountry.area < 17000000){
+      zoom = 3;
+    }else if(storedCountry.area >= 2000000 && storedCountry.area < 9000000){
+      zoom = 4;
+    }else if(storedCountry.area >= 200000 && storedCountry.area < 2000000){
+      zoom = 5;
+    }else if(storedCountry.area >= 100000 && storedCountry.area < 200000){
+      zoom = 6;
+    }else if(storedCountry.area < 1000){
+      zoom = 10;
+    }else{
+      zoom = 7;
+    }
+
     var map = new Map(centre, zoom);
 
   }
@@ -57,6 +73,7 @@ window.onload = function(){
       }
 
       displayInfo();
+      // new PieChart();
 
 
 
