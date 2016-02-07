@@ -1,4 +1,4 @@
-var PieChart = function(worldPop, country){
+var PieChart = function(regionPop, country){
   var container = document.getElementById("pie-chart");
   var pieChart = new Highcharts.Chart({
       chart: {
@@ -18,14 +18,14 @@ var PieChart = function(worldPop, country){
         name: "Population",
         data: [
           {
-            name: "World Population",
-            y: worldPop,
-            color: "#ffac33"
+            name: country.region,
+            y: regionPop,
+            // color: "#ffac33"
           },
           {
             name: country.name,
             y: country.population,
-            color: "#73b7ff",
+            // color: "#73b7ff",
             sliced: true
           }
         ]

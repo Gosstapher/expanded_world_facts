@@ -11,7 +11,7 @@ window.onload = function(){
     var countryCapital = document.querySelector("#capital");
     var countryPop = document.querySelector("#population");
     var mapTitle = document.querySelector("#map-title");
-
+    var regionPop = 0;
     countryName.innerText = ("You have selected : " + storedCountry.name);
     countryCapital.innerText = ("Did you know that the capital city of " + storedCountry.name + " is : " + storedCountry.capital);
     countryPop.innerText = ("It will astound you to find out that " + storedCountry.name + " has a population of : " + storedCountry.population.toLocaleString());
@@ -40,29 +40,26 @@ window.onload = function(){
     var map = new Map(centre, zoom);
     map.bindClick();
 
-    var regionPop = function(country){
+    var regionPopCalculator = function(country){
       var region = country.region;
       var pop = 0;
       requestRegion.open("GET", (urlRegions+region));
-      requestRegion.send(null);
       requestRegion.onload = function(){
         if(requestRegion.status === 200){
           var regionList = JSON.parse(requestRegion.responseText);  
           for (var i = 0; i < regionList.length; i++) {
             pop += (regionList[i].population);
           };
-            // console.log(pop);
-            return pop;
+          regionPop = pop;
         }
-        // console.log(pop);
+        // console.log(regionPop);
+        new PieChart((regionPop - storedCountry.population), storedCountry);
       }
+      requestRegion.send(null);
     }
 
-
-    console.log(regionPop(storedCountry));
-    // var testPop = regionPop(storedCountry);
-    // console.log(testPop);
-    // new PieChart((7400000000 - storedCountry.population), storedCountry);
+    regionPopCalculator(storedCountry);
+    // console.log(regionPop);
   }
 // ------------------- end of displayInfo function ---------------------------------
 
