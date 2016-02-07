@@ -3,15 +3,16 @@ var PieChart = function(regionPop, country){
   var pieChart = new Highcharts.Chart({
       chart: {
         type: 'pie',
-        renderTo: container
+        renderTo: container,
+        backgroundColor: "#DCDCDC"
       },
       legend: {
                   align: 'right',
-                  verticalAlign: 'top',
+                  verticalAlign: 'middle',
                   layout: 'vertical'
               },
       title: {
-        text: "population"
+        text: "Country population relative to Region"
       },
       series: [{
         showInLegend: true,

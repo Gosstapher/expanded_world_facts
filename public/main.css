@@ -6,7 +6,7 @@ body {
   display: block;
   background: linear-gradient(to right, #2ca020 0%,#5ea0d6 50%,#260cd1 100%);
   margin: auto;
-  width: 50%;
+  width: 70%;
   border: 1px solid black;
   border-radius: 25px;
   box-sizing; border-box;
@@ -28,6 +28,19 @@ body {
   text-align: center;
 }
 
+#left-side {
+  float: left;
+  display: block;
+  width: 49%;
+  border-right: 1px solid black;
+}
+
+#right-side {
+  display: inline-block;
+  width: 49%;
+  float: right;
+}
+
 #info {
   text-align: center;
 }
@@ -41,6 +54,8 @@ body {
 
 #pie-chart {
   margin-top: 5px;
+  height: 300px;
+  width: 500px;
 
 }
 
