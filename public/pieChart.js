@@ -7,9 +7,9 @@ var PieChart = function(regionPop, country){
         backgroundColor: "#DCDCDC"
       },
       legend: {
-                  align: 'right',
-                  verticalAlign: 'middle',
-                  layout: 'vertical'
+                align: 'right',
+                verticalAlign: 'middle',
+                layout: 'vertical'
               },
       title: {
         text: "Country population relative to Region"
@@ -21,12 +21,10 @@ var PieChart = function(regionPop, country){
           {
             name: country.region,
             y: regionPop,
-            // color: "#ffac33"
           },
           {
             name: country.name,
             y: country.population,
-            // color: "#73b7ff",
             sliced: true
           }
         ]
